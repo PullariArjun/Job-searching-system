@@ -1,7 +1,6 @@
 package com.jobportal.API;
 
 import com.jobportal.DTO.JobDTO;
-import com.jobportal.DTO.UserDTO;
 import com.jobportal.Exceptions.JobPortalException;
 import com.jobportal.Services.JobService;
 import jakarta.validation.Valid;
