@@ -3,11 +3,25 @@ import { Button, Indicator } from "@mantine/core";
 import NavLinks from "./NavLinks";
 import { Link, useLocation } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../Services/ProfileService";
+import { setProfile } from "../Slices/ProfileSlice";
+import { useEffect } from "react";
 
 const Header = () => {
     const location = useLocation();
-    const user = useSelector(state => state.user)
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
+    useEffect(() => {
+        getProfile(user.id)
+            .then((data) => {
+                dispatch(setProfile(data));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        // eslint-disable-next-line
+    }, []);
     return (
         location.pathname !== "/sign-up" &&
         location.pathname !== "/login" && (

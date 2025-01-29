@@ -1,9 +1,7 @@
 import { Avatar, Divider, FileInput, Overlay } from "@mantine/core";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../../Services/ProfileService";
 import Info from "./Info";
-import { changeProfile, setProfile } from "../../../Slices/ProfileSlice";
+import { changeProfile } from "../../../Slices/ProfileSlice";
 import About from "./About";
 import Skills from "./Skills";
 import ExperienceSection from "./ExperienceSection";
@@ -11,21 +9,12 @@ import CertificationSection from "./CertificationSection";
 import { useHover } from "@mantine/hooks";
 import { IconEdit } from "@tabler/icons-react";
 import { SuccessNotification } from "../../../Utilities/Notifications/Notifications";
+import { getBase64 } from "../../../Utilities/Base64Converter/Base64Converter";
 
-const Profile = (props) => {
+const Profile = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
     const profile = useSelector((state) => state.profile)
-    useEffect(() => {
-        getProfile(user.id)
-            .then((data) => {
-                dispatch(setProfile(data));
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        // eslint-disable-next-line
-    }, []);
+    
     const { hovered, ref } = useHover();
     const handleFileChange = async (image) =>{
         let picture = await getBase64(image);
@@ -34,14 +23,7 @@ const Profile = (props) => {
         SuccessNotification("Profile Picture Changed successfully...")
 
     }
-    const getBase64 = (file) =>{
-        return new Promise((resolve, reject)=>{
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result)
-            reader.onerror = (error) => reject(error)
-        })
-    }
+    
     return (
         <div className="w-4/5 mx-auto">
             <div className="relative">

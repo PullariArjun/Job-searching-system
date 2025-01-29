@@ -21,4 +21,10 @@ const getJob = async (id) =>{
     .catch(err => {throw err})
 }
 
-export {postJob, getAllJobs, getJob}
+const applyJob = async (id, applicant) =>{
+    return await Axios.post(`jobs/apply-job/${id}`, applicant)
+    .then(res => res.data)
+    .catch(err => {throw err})
+}
+
+export {postJob, getAllJobs, getJob, applyJob}

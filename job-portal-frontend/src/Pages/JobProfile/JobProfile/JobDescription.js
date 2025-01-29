@@ -3,8 +3,6 @@ import { IconBookmark } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import {
     JobDescriptionData,
-    JobDescriptionPageDesc,
-    JobDescriptionSkillsData,
 } from "../../../Data/Data";
 import DOMPurify from "dompurify";
 import { timeAgo } from "../../../Utilities/DateFormat/DateFormat";

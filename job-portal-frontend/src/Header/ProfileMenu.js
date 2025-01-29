@@ -14,22 +14,30 @@ import { Link } from "react-router-dom";
 import { removeUser } from "../Slices/UserSlice";
 
 const ProfileMenu = () => {
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
     const [checked, setChecked] = useState(false);
     const [opened, setOpened] = useState(false);
-    const profile = useSelector(state => state.profile)
+    const profile = useSelector((state) => state.profile);
+    
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         dispatch(removeUser());
-    }
+    };
     return (
         <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
             <Menu.Target>
                 <div className="flex items-center justify-between gap-3 cursor-pointer !bg-transparent">
                     <div className="">{user.name}</div>
                     <div className="w-10 h-10">
-                        <Avatar alt="it's me" src={profile.picture?`data:image/jpeg;base64, ${profile.picture}`:"./Avatar1.png"} />
+                        <Avatar
+                            alt="it's me"
+                            src={
+                                profile.picture
+                                    ? `data:image/jpeg;base64, ${profile.picture}`
+                                    : "./Avatar1.png"
+                            }
+                        />
                     </div>
                 </div>
             </Menu.Target>

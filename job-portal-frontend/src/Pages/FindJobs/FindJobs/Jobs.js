@@ -9,7 +9,6 @@ const Jobs = () =>{
         getAllJobs()
         .then((res)=>{
             setJobList(res)
-            console.log(res)
         }).catch((err)=>{
             console.log(err)
         })
