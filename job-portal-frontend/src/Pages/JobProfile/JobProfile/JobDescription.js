@@ -7,27 +7,35 @@ import {
     JobDescriptionSkillsData,
 } from "../../../Data/Data";
 import DOMPurify from "dompurify";
+import { timeAgo } from "../../../Utilities/DateFormat/DateFormat";
 
 const JobDescription = (props) => {
-    const data = DOMPurify.sanitize(JobDescriptionPageDesc);
+    const data = DOMPurify.sanitize(props.description);
     return (
         <div className="w-2/3 p-5">
             <div className="flex justify-between">
                 <div className="flex gap-2 items-center">
                     <div className="p-3 bg-mine-shaft-800 flex items-center justify-center rounded-xl">
-                        <img className="h-14" src={`/Google.png`} alt="" />
+                        <img
+                            className="h-14"
+                            src={`/Companies/${props.company}.png`}
+                            alt=""
+                        />
                     </div>
                     <div>
                         <div className="font-semibold text-2xl">
-                            Software Engineer
+                            {props.jobTitle}
                         </div>
                         <div className="text-lg text-mine-shaft-300">
-                            Google &bull; 3 days ago &bull; 48 Applicants
+                            {props.company} &bull; {timeAgo(props.postTime)}{" "}
+                            &bull;{" "}
+                            {props.applicants ? props.applicants.length : 0}{" "}
+                            Applicants
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 items-center">
-                    <Link to={"/find-jobs/job-profile/apply"}>
+                    <Link to={`/find-jobs/job-profile/apply/${props.id}`}>
                         <Button color="gold.4" size="sm" variant="light">
                             {props.edit ? "Edit" : "Apply"}
                         </Button>
@@ -63,7 +71,10 @@ const JobDescription = (props) => {
                         <div className="text-sm text-mine-shaft-300">
                             {item.name}
                         </div>
-                        <div className="font-bold">{item.value}</div>
+                        <div className="font-bold">
+                            {props ? props[item.id] : "NA"}
+                            {item.id === "packageOffered" ? " LPA" : ""}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -73,7 +84,7 @@ const JobDescription = (props) => {
                     Required Skills
                 </div>
                 <div className="flex gap-2 flex-wrap">
-                    {JobDescriptionSkillsData.map((item, index) => (
+                    {props?.skillsRequired?.map((item, index) => (
                         <ActionIcon
                             key={index}
                             color="gold.4"
@@ -102,20 +113,20 @@ const JobDescription = (props) => {
                             <div className="p-3 bg-mine-shaft-800 flex items-center justify-center rounded-xl">
                                 <img
                                     className="h-8"
-                                    src={`/Google.png`}
+                                    src={`/Companies/${props.company}.png`}
                                     alt=""
                                 />
                             </div>
                             <div className="flex flex-col">
                                 <div className="font-medium text-lg">
-                                    Google
+                                    {props.company}
                                 </div>
                                 <div className="text-mine-shaft-300">
                                     10K+ Employees
                                 </div>
                             </div>
                         </div>
-                        <Link to={"/company-profile"}>
+                        <Link to={`/company-profile/${props.company}`}>
                             <Button color="gold.4" variant="light">
                                 Company page
                             </Button>

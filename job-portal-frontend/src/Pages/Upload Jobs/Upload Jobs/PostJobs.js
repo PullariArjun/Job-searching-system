@@ -3,13 +3,12 @@ import PostJobData from "../../../Data/PostJobData";
 import { Button, NumberInput, TagsInput, Textarea } from "@mantine/core";
 import TextEditor from "../../../Utilities/RichTextEditor/RichTextEditor";
 import { isNotEmpty, useForm } from "@mantine/form";
-import { PostJob } from "../../../Services/JobService";
+import { postJob } from "../../../Services/JobService";
 import { ErrorNotification, SuccessNotification } from "../../../Utilities/Notifications/Notifications";
 import { useNavigate } from "react-router-dom";
 
 const PostJobs = () => {
     const data = PostJobData;
-    const navigate = useNavigate()
     const form = useForm({
         mode: "controlled",
         validateInputOnChange: true,
@@ -43,7 +42,7 @@ const PostJobs = () => {
             console.log("Form is not valid")
             return;
         }
-        PostJob(form.getValues())
+        postJob(form.getValues())
             .then((res) => {
                 SuccessNotification("Job Posted Successfully");
                 // navigate("/find-jobs")

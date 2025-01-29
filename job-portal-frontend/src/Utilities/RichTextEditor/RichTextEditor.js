@@ -77,7 +77,7 @@ const TextEditor = (props) => {
                 </RichTextEditor.ControlsGroup>
             </RichTextEditor.Toolbar>
 
-            <RichTextEditor.Content bg={"mineShaft.10"} />
+            <RichTextEditor.Content bg={"mineShaft.10"} {...props.form.getInputProps("description")} />
         </RichTextEditor>
     );
 };

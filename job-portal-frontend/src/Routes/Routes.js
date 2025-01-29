@@ -13,15 +13,15 @@ import Signup from "../Pages/Signup/Signup";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 const authedRouts = [
     { path: "/find-jobs", component: <FindJobs /> },
-    { path: "/find-jobs/job-profile", component: <JobProfile /> },
-    { path: "/find-jobs/job-profile/apply", component: <ApplyJob /> },
+    { path: "/find-jobs/job-profile/:id", component: <JobProfile /> },
+    { path: "/find-jobs/job-profile/apply/:id", component: <ApplyJob /> },
     { path: "/find-talent", component: <FindTalent /> },
     { path: "/upload-jobs", component: <UploadJobs /> },
     { path: "/posted-jobs", component: <PostedJobs /> },
     { path: "/job-history", component: <JobHistory /> },
     { path: "/home", component: <Home /> },
     { path: "/find-talent/talent-profile", component: <TalentProfile /> },
-    { path: "/company-profile", component: <CompanyProfile /> },
+    { path: "/company-profile/:name", component: <CompanyProfile /> },
     { path: "/profile", component: <UserProfile /> },
     { path: "*", component: <Navigate to={"/home"} replace /> },
 ];

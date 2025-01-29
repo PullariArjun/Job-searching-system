@@ -1,8 +1,19 @@
-import JobsData from "../../../Data/JobsData"
+import { useEffect, useState } from "react"
 import JobsCard from "../Components/Jobscard"
 import Sort from "../Components/Sort"
+import {getAllJobs} from "../../../Services/JobService"
 
 const Jobs = () =>{
+    const [jobList, setJobList] = useState([{}])
+    useEffect(()=>{
+        getAllJobs()
+        .then((res)=>{
+            setJobList(res)
+            console.log(res)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    },[])
     return (
         <div className="px-5 py-5">
             <div className="flex justify-between">
@@ -11,7 +22,7 @@ const Jobs = () =>{
             </div>
             <div className="flex mt-10 flex-wrap gap-5 justify-between">
                 {
-                    JobsData.map((job, index)=> <JobsCard key={index} {...job}/>)
+                    jobList?.map((job, index)=> <JobsCard key={index} {...job}/>)
                 }
 
             </div>

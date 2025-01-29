@@ -1,24 +1,23 @@
 import { Button } from "@mantine/core";
 import { useState } from "react";
 import ExperienceInput from "./ExperienceInput";
-import DateFormat from "../../../Utilities/DateFormat/DateFormat";
+import { DateFormat } from "../../../Utilities/DateFormat/DateFormat";
 import { useDispatch, useSelector } from "react-redux";
 import { changeProfile } from "../../../Slices/ProfileSlice";
 import { SuccessNotification } from "../../../Utilities/Notifications/Notifications";
 
 const ExperienceCard = (props) => {
     const [edit, setEdit] = useState(false);
-    const profile = useSelector(state => state.profile)
+    const profile = useSelector((state) => state.profile);
     const dispatch = useDispatch();
-    
-    const handleDelete = () =>{
-        let exps = [...profile.experiences]
+
+    const handleDelete = () => {
+        let exps = [...profile.experiences];
         exps.splice(props.index, 1);
-        let updatedProfile = {...profile, experiences:exps}
+        let updatedProfile = { ...profile, experiences: exps };
         dispatch(changeProfile(updatedProfile));
         SuccessNotification(`Experience Deleted Successfully...`);
-
-    }
+    };
     return edit ? (
         <ExperienceInput {...props} setEdit={setEdit} />
     ) : (
@@ -40,7 +39,8 @@ const ExperienceCard = (props) => {
                     </div>
                 </div>
                 <div className="text-sm text-mine-shaft-300">
-                    {DateFormat(props.startDate)} - {props.working?"Present":DateFormat(props.endDate)}
+                    {DateFormat(props.startDate)} -{" "}
+                    {props.working ? "Present" : DateFormat(props.endDate)}
                 </div>
             </div>
             <div className="text-sm text-mine-shaft-300 text-justify">
@@ -55,7 +55,11 @@ const ExperienceCard = (props) => {
                     >
                         Edit
                     </Button>
-                    <Button color="red.8" variant="light" onClick={handleDelete}>
+                    <Button
+                        color="red.8"
+                        variant="light"
+                        onClick={handleDelete}
+                    >
                         Delete
                     </Button>
                 </div>

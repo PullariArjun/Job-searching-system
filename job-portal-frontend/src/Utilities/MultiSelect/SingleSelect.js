@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Combobox, InputBase, ScrollArea, useCombobox } from "@mantine/core";
-import { useForm } from "@mantine/form";
 
 const SingleSelect = (props) => {
     useEffect(() => {
@@ -8,6 +7,7 @@ const SingleSelect = (props) => {
         
         setValue(props.form?.getInputProps(props.name).value);
         setSearch(props.form?.getInputProps(props.name).value);
+        //eslint-disable-next-line
     }, [props.options]);
 
     const combobox = useCombobox({

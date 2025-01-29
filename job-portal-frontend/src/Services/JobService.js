@@ -1,6 +1,6 @@
 import Axios from "../Utilities/Axios/Axios";
 
-const PostJob = async (job) => {
+const postJob = async (job) => {
     return await Axios.post("/jobs/post-job", job)
     .then((res) => {
         return res.data;
@@ -9,16 +9,16 @@ const PostJob = async (job) => {
     })
 }
 
-const GetAllJobs = async () =>{
-    return await Axios.get("/get-all-jobs")
+const getAllJobs = async () =>{
+    return await Axios.get("/jobs/get-all-jobs")
     .then(res => res.data)
     .catch(err => {throw err})
 }
 
-const GetJob = async (id) =>{
-    return await Axios.get(`/get-job/${id}`)
+const getJob = async (id) =>{
+    return await Axios.get(`/jobs/get-job/${id}`)
     .then(res => res.data)
     .catch(err => {throw err})
 }
 
-export {PostJob, GetAllJobs, GetJob}
+export {postJob, getAllJobs, getJob}

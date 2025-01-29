@@ -258,24 +258,28 @@ export const JobDescriptionData = [
         name: "Location",
         icon: <IconMapPin className="h-4/5 w-4/5" stroke={1.5} />,
         value: "New York",
+        id:"location",
     },
 
     {
         name: "Experience",
         icon: <IconBriefcase className="h-4/5 w-4/5" stroke={1.5} />,
         value: "Expert",
+        id:"experience"
     },
 
     {
         name: "Salary",
         icon: <IconPremiumRights className="h-4/5 w-4/5" stroke={1.5} />,
         value: "48 LPA",
+        id:"packageOffered"
     },
 
     {
         name: "Job Type",
         icon: <IconRecharging className="h-4/5 w-4/5" stroke={1.5} />,
         value: "Full Time",
+        id:"jobType"
     },
 ];
 

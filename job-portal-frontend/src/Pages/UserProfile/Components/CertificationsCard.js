@@ -1,6 +1,6 @@
 import { ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
-import DateFormat from "../../../Utilities/DateFormat/DateFormat";
+import { DateFormat } from "../../../Utilities/DateFormat/DateFormat";
 import { useDispatch, useSelector } from "react-redux";
 import { SuccessNotification } from "../../../Utilities/Notifications/Notifications";
 import { changeProfile } from "../../../Slices/ProfileSlice";
