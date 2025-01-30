@@ -73,7 +73,7 @@ const JobHistoryPage = () => {
                     <Tabs.Panel value={activeTab}>
                         <div className="flex flex-wrap mt-10 gap-5">
                             {showList?.map((job, index) => (
-                                <Card key={index} {...job} applied />
+                                <Card key={index} {...job} {...{[activeTab.toLowerCase()]:true}} />
                             ))}
                         </div>
                     </Tabs.Panel>
