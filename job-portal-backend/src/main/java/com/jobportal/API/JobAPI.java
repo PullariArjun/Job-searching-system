@@ -46,6 +46,16 @@ public class JobAPI {
         return new ResponseEntity<>(new ResponseDTO("Applied Successfully..."), HttpStatus.OK);
     }
 
+    @GetMapping("/get-jobs-posted-by/{id}")
+    public ResponseEntity<List<JobDTO>> getJobsPostedBy(@PathVariable Long id) throws JobPortalException{
+        return new ResponseEntity<>(jobService.getJobsPostedBy(id), HttpStatus.OK);
+
+    }
+
+//    @PostMapping("/change-app-status")
+//    public ResponseEntity<ResponseDTO> changeAppStatus(@RequestBody ApplicantDTO applicantDTO){
+//
+//    }
 
 
 }
